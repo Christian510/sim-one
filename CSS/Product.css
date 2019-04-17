@@ -1,0 +1,42 @@
+.product-card {
+  border-radius: 5px;
+  background-color: #d34735;
+  width: 700px;
+  height: 250px;
+}
+
+.card-img {
+  padding: 10px;
+}
+
+.product-wrapper {
+  background-color: #545454;
+  height: 100%;
+  width: 100%;
+}
+
+.product-info {
+  margin-top: 20px;
+  background-color: #d4d7d7;
+}
+
+.product-buttons {
+  background-color: silver;
+  height: 50%;
+  margin-bottom: 12px;
+}
+
+.product-buttons input {
+  background-color: #3ad886;
+  border-radius: 5px;
+}
+
+#edit-btn {
+  padding: 15px;
+  margin-right: 10px;
+}
+
+#delete-btn {
+  padding: 15px 25px 15px 25px;
+}
+/*# sourceMappingURL=Product.css.map */
