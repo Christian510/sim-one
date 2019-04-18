@@ -10,6 +10,7 @@ import Product from './component/Product/Product';
 export default (
     <Switch>
         <Route exact path="/" component={ Product } />
-        <Route path="/form" component={ Form } />
+        <Route path="/form"
+                render={props => <Form {...props} />} />
     </Switch>
 );

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import { Route, Switch} from 'react-router-dom';
 import axios from 'axios';
+
+// ***** Styles ***** //
 import './App.sass';
 import './component/Global/Global.sass';
+
+// ***** Components ***** //
 import Header from './component/Header/Header.js';
 import Product from './component/Product/Product';
 import Form from './component/Form/Form';
-// import route from './route';
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +27,7 @@ class App extends Component {
     this.getProducts();
   }
 
-  getProducts(){
+  getProducts() {
     console.log('===== Did Mount! =====');
     axios.get('/get/products')
       .then(res => {
@@ -48,7 +52,7 @@ class App extends Component {
   // }
 
   addToDb(img_url, productName, price) {
-      axios.post( '/add/products', {img_url, productName, price} )
+    axios.post('/add/products', { img_url, productName, price })
       .then(res => {
         console.log('====== Successfully added to db! =====');
         this.getProducts();
@@ -59,48 +63,48 @@ class App extends Component {
       })
   }
 
-  deleteProduct( id ){
-    axios.delete( `/delete/products/${id}` )
-    .then( () => {
-      console.log('===== Grabbed id =====');
-      this.getProducts();
-    })
-    .catch( err => {
-      console.log( '===== Failure =====');
-      console.log( err );
-    }
-    )
+  deleteProduct(id) {
+    axios.delete(`/delete/products/${id}`)
+      .then(() => {
+        console.log('===== Grabbed id =====');
+        this.getProducts();
+      })
+      .catch(err => {
+        console.log('===== Failure =====');
+        console.log(err);
+      })
   }
 
 
   render() {
     const { products } = this.state;
-    
-    const displayProducts = products.map( (product, index) => (
-      <Product
-        key={index}
-        id={product.id}
-        img_url={product.img_url}
-        productName={product.productname}
-        price={product.price}
-        addImge={this.addImage}
-        deleteProduct={this.deleteProduct}
-        editProduct={this.editProduct}
-      />
-    ));
-    
+
     return (
       <section>
-        <Header />
+
         <section className="app" >
-          <div className="float-left">
-            { displayProducts }
-          </div>
-          <div className="float-right">
-            <Form 
-              addToDbFn = { this.addToDb }
-              getProducts = { this.getProducts} />
-          </div>
+              <Header />
+              <Switch>
+                <Route path="/"
+                  render={() => products.map((product, index) => (
+                    <Product
+                      key={index}
+                      id={product.id}
+                      img_url={product.img_url}
+                      productName={product.productname}
+                      price={product.price}
+                      addImge={this.addImage}
+                      deleteProduct={this.deleteProduct}
+                      editProduct={this.editProduct}
+                    />
+                  ))} exact />
+
+                <Route path="/form"
+                  render={() =>
+                    <Form
+                      addToDbFn={this.addToDb}
+                      getProducts={this.getProducts} />} />
+              </Switch>
         </section>
       </section>
     );

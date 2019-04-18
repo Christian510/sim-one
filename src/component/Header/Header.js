@@ -21,7 +21,7 @@ export default function Header() {
                     <Link className="link" to="/" >Dashboard</Link>
                 </li>
                 <li className="header-links">
-                    <Link className="link" to="form" >Add Inventory</Link>
+                    <Link className="link" to="/form" >Add Inventory</Link>
                 </li>
             </ul>
         </header>
