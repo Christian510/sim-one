@@ -20,7 +20,6 @@ class App extends Component {
     this.getProducts = this.getProducts.bind(this);
     this.addToDb = this.addToDb.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
-    // this.editProduct = this.editProduct.bind(this);
   }
 
   componentDidMount() {
@@ -43,13 +42,6 @@ class App extends Component {
   }
   // 1. editProduct will update existing products
   // 2. Take a product back to the form for updating
-  // editProduct() {
-  //   axios.put()
-  //   this.setState({
-
-
-  //   })
-  // }
 
   addToDb(img_url, productName, price) {
     axios.post('/add/products', { img_url, productName, price })
@@ -95,7 +87,6 @@ class App extends Component {
                       price={product.price}
                       addImge={this.addImage}
                       deleteProduct={this.deleteProduct}
-                      editProduct={this.editProduct}
                     />
                   ))} exact />
 
@@ -103,7 +94,9 @@ class App extends Component {
                   render={() =>
                     <Form
                       addToDbFn={this.addToDb}
-                      getProducts={this.getProducts} />} />
+                      getProducts={this.getProducts}
+                       />} 
+                      />
               </Switch>
         </section>
       </section>
