@@ -20,6 +20,7 @@ class App extends Component {
     this.getProducts = this.getProducts.bind(this);
     this.addToDb = this.addToDb.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
+    this.updateProducts = this.updateProducts.bind(this);
   }
 
   componentDidMount() {
@@ -40,9 +41,14 @@ class App extends Component {
         console.log(err);
       })
   }
-  // 1. editProduct will update existing products
-  // 2. Take a product back to the form for updating
 
+  updateProducts(img_url, productName, price) {
+    axios.put('/edit/prodcuts', {img_url, productName, price})
+    .then( res => {
+      console.log('===== Sucessfully updated product')
+    })
+  }
+  
   addToDb(img_url, productName, price) {
     axios.post('/add/products', { img_url, productName, price })
       .then(res => {

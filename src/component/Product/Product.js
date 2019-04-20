@@ -13,21 +13,16 @@ class Product extends Component {
     pushProduct(val) {
         console.log(val);
         console.log('Clicked!!!!!');
-        // this.setState({
-        //     redirect: true
-        // });
-
-        // console.log(this.props.editProduct);
-        // let { editProduct } = this.props;
-        // editProduct(img_url, productName, price);
+        this.setState({
+            redirect: true
+        });
     }
 
     renderRedirect() {
-        if (this.state.redirect) {
+        if(this.state.redirect) {
             return <Redirect to="/form" />
         }
     }
-
     render() {
         const { id, img_url, productName, price, deleteProduct } = this.props;
         return (
@@ -43,8 +38,12 @@ class Product extends Component {
                         </div>
 
                         <div className="product-buttons flex-center-sb-row">
-                            <button className="green-btn" onClick={() => { deleteProduct(id) }} >Delete</button>
-                            <button className="green-btn" onClick={() => { this.pushProduct(img_url) }} >Edit</button>
+                            <button className="green-btn" 
+                                    onClick={() => 
+                                    { deleteProduct(id) }} >Delete</button>
+                            <button className="green-btn" 
+                                    onClick={() => 
+                                    { this.pushProduct(img_url) }} >Edit</button>
                             {this.renderRedirect()}
                         </div>
                     </div>
