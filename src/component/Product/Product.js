@@ -1,26 +1,35 @@
 
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import './Product.sass';
 import '../Global/Global.sass';
 
 class Product extends Component {
-
-    state = {
-        redirect: false
+    constructor(props){
+        super(props);
+        this.state = {
+            update_img: '',
+            update_name: '',
+            update_price: '',
+            redirect: false
+        }
+        this.pushUpdate = this.pushUpdate.bind(this);
     }
+   
 
-    pushProduct(val) {
-        console.log(val);
+    pushUpdate(img, name, price) {
         console.log('Clicked!!!!!');
         this.setState({
+            update_img: img,
+            update_name: name,
+            update_price: price,
             redirect: true
-        });
+        }, () => {console.log("pushUpdate: " + img, name, price)});
     }
 
     renderRedirect() {
         if(this.state.redirect) {
-            return <Redirect to="/form" />
+            return <Redirect to="/update" />
         }
     }
     render() {
@@ -43,7 +52,7 @@ class Product extends Component {
                                     { deleteProduct(id) }} >Delete</button>
                             <button className="green-btn" 
                                     onClick={() => 
-                                    { this.pushProduct(img_url) }} >Edit</button>
+                                    { this.pushUpdate( img_url, productName, price ) }} >Edit</button>
                             {this.renderRedirect()}
                         </div>
                     </div>

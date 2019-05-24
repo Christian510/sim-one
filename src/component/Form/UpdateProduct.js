@@ -1,13 +1,17 @@
 
 import React, { Component } from 'react';
 
-class EditProdcut extends Component {
+
+class UpdateProdcut extends Component {
     
     render(){
-        let { img_url, editProduct, cancelAddProduct, renderRedirect } = this.props;
+        let { update_img, update_name, update_price } = this.props;
+        console.log("UpdateProduct: " + update_name );
         return (
-            <form className="flex-center-col">
-                        <img id="product-img" src={img_url} alt="product" width="300" height="200"></img>
+            <section className="container flex-center-col">
+                <section className="form-card" >
+                    <form className="flex-center-col">
+                        <img id="product-img" src={ update_img } alt="product" width="300" height="200"></img>
                         <div className="flex-left form-input" >
                             <label>Image Url </label>
                             <input
@@ -15,7 +19,8 @@ class EditProdcut extends Component {
                                 name="img_url"
                                 pattern="https://.*"
                                 placeholder="http://mybeautifulpainting.com"
-                                onChange={ editProduct }
+                                value= { update_img }
+                                onChange={ this }
                                 required />
                         </div>
 
@@ -25,7 +30,8 @@ class EditProdcut extends Component {
                                 type="text"
                                 name="productName"
                                 placeholder="Prodcut Name"
-                                onChange={editProduct} />
+                                value={ update_name }
+                                onChange={ this } />
                         </div>
 
                         <div className="flex-left form-input" >
@@ -34,16 +40,20 @@ class EditProdcut extends Component {
                                 type="text"
                                 name="price"
                                 placeholder="Priceless!"
-                                onChange={editProduct} />
+                                value={ update_price }
+                                onChange={ this } />
                         </div>
 
                         <section className="form-buttons">
-                            <button onClick={cancelAddProduct} >Cancel</button>
-                            <button onClick={editProduct}  >Add to Inventory</button>
-                            { renderRedirect }
+                            <button onClick={ this.cancelAddProduct } >Cancel</button>
+                            <button onClick={ this } >Add to Inventory</button>
                         </section>
+                        { this.renderRedirect() }
                     </form>
+                   
+                </section>
+            </section>
         )
     }
 }
-export default EditProdcut;
+export default UpdateProdcut;

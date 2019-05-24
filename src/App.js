@@ -10,6 +10,7 @@ import './component/Global/Global.sass';
 import Header from './component/Header/Header.js';
 import Product from './component/Product/Product';
 import Form from './component/Form/Form';
+import UpdateProduct from './component/Form/UpdateProduct';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component {
     this.getProducts = this.getProducts.bind(this);
     this.addToDb = this.addToDb.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
-    this.updateProducts = this.updateProducts.bind(this);
+    this.updateProduct = this.updateProduct.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +43,7 @@ class App extends Component {
       })
   }
 
-  updateProducts(img_url, productName, price) {
+  updateProduct(img_url, productName, price) {
     axios.put('/edit/prodcuts', {img_url, productName, price})
     .then( res => {
       console.log('===== Sucessfully updated product')
@@ -50,6 +51,7 @@ class App extends Component {
   }
   
   addToDb(img_url, productName, price) {
+    console.log("addToDb: " + price);
     axios.post('/add/products', { img_url, productName, price })
       .then(res => {
         console.log('====== Successfully added to db! =====');
@@ -79,12 +81,12 @@ class App extends Component {
 
     return (
       <section>
-
         <section className="app" >
               <Header />
               <Switch>
                 <Route path="/"
-                  render={() => products.map((product, index) => (
+                  render={
+                    () => products.map((product, index) => (
                     <Product
                       key={index}
                       id={product.id}
@@ -100,6 +102,13 @@ class App extends Component {
                   render={() =>
                     <Form
                       addToDbFn={this.addToDb}
+                      getProducts={this.getProducts}
+                       />} 
+                      />
+                  <Route path="/update"
+                  render={() =>
+                    <UpdateProduct
+                      updateProductFn={this.updateProduct}
                       getProducts={this.getProducts}
                        />} 
                       />

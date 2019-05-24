@@ -1,12 +1,12 @@
 
 import React, { Component } from 'react';
 
+
 class AddProdcut extends Component{
     
     render(){
         let { img_url, newProduct, addProduct, cancelAddProduct, renderRedirect } = this.props;
         return (
-            
             <form className="flex-center-col">
                         <img id="product-img" src={img_url} alt="product" width="300" height="200"></img>
                         <div className="flex-left form-input" >
