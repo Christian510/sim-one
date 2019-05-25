@@ -12,7 +12,7 @@ import Product from './component/Product/Product';
 import Form from './component/Form/Form';
 import UpdateProduct from './component/Form/UpdateProduct';
 
-class App extends Component {
+class App extends Component { 
   constructor(props) {
     super(props);
     this.state = {
