@@ -6,7 +6,7 @@ import axios from 'axios';
 import './App.sass';
 import './component/Global/Global.sass';
 
-// ***** Components ***** //
+// ****** Components ****** //
 import Header from './component/Header/Header.js';
 import Product from './component/Product/Product';
 import Form from './component/Form/Form';
