@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 
-// ***** Styles ***** //
+// ****** Styles ****** //
 import './App.sass';
 import './component/Global/Global.sass';
 
