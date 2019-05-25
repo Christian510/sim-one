@@ -72,7 +72,7 @@ class App extends Component {
       .catch(err => {
         console.log('===== Failure =====');
         console.log(err);
-      })
+      });
   }
 
 
