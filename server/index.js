@@ -35,15 +35,15 @@ app.post( '/add/products', (req, res) => {
     });
 } );
 
-// app.put( '/update/products/:id', (req, res) => {
-//     req.app.get('db').update_products().then(
-//         response => {
-//             res.status( 200 ).send( response );
-//         })
-//         .catch( err => {
-//             res.status( 500 ).send( err )
-//         });
-// } );
+app.put( '/update/products/:id', (req, res) => {
+    req.app.get('db').update_products().then(
+        response => {
+            res.status( 200 ).send( response );
+        })
+        .catch( err => {
+            res.status( 500 ).send( err )
+        });
+} );
 
 app.delete( '/delete/products/:id', ( req, res ) => {
     const { id } = req.params;
